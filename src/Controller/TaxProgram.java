@@ -16,7 +16,7 @@ public class TaxProgram extends Menu<String>{
     TaxRepository program;
 
     public TaxProgram() {
-        super("\tINCOME TAX", mc);
+        super("Income Tax", mc);
         program = new TaxRepository();
     }
 

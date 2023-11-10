@@ -141,7 +141,6 @@ public class TaxDAO {
         } else {
             return childrenList;
         }
-
     }
 
     public HashMap<Integer, ArrayList<Double>> calculateTaxableIncome(ArrayList<WorkingPerson> family, ArrayList<Parent> listParent) {
