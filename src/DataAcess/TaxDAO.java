@@ -47,7 +47,7 @@ public class TaxDAO {
                 ArrayList<Children> listChildren = addChildren();
                 WorkingPerson wp = new WorkingPerson(income, listChildren);
                 family.add(wp);
-                System.out.println("---------- Input income ----------");
+//                System.out.println("---------- Input income ----------");
                 if (!l.checkInputYN("\nDo you want to continue input Income for another person in your family(Y/N): ")) {
                     HashMap<Integer, ArrayList<Double>> taxList = calculateTaxableIncome(family, ParentList);
                     printTaxDetails(taxList);
@@ -93,9 +93,7 @@ public class TaxDAO {
         } else {
             return ParentList;
         }
-    }
-
-    
+    }    
 
     public ArrayList<Children> addChildren() {
         System.out.println("\n---------- Input children ----------");
