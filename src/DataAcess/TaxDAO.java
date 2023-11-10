@@ -62,7 +62,7 @@ public class TaxDAO {
         System.out.println("---------- Input income ----------");
         int count = 1;
         while(count <= incomeNum){
-            income += l.checkInputDouble("Input the " + count + " Income of Person " + i + ": ");  
+            income += l.checkInputDouble("Input the " + count + "th Income of Person " + i + ": ");  
             count++;
         }
         return income;
