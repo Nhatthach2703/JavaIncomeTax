@@ -40,24 +40,34 @@ public class TaxDAO {
         ArrayList<WorkingPerson> family = new ArrayList<>();
         while (true) {
             ArrayList<Parent> ParentList = addParent();
+            int i = 1;
             while (true) {
-                System.out.println("---------- Input income ----------");
-                double income = l.checkInputDouble("Input Income: ");
+                double income = addIncome(i);
+                i++;
                 ArrayList<Children> listChildren = addChildren();
                 WorkingPerson wp = new WorkingPerson(income, listChildren);
                 family.add(wp);
                 System.out.println("---------- Input income ----------");
-                if (!l.checkInputYN("Do you want to continue input Income(Y/N): ")) {
+                if (!l.checkInputYN("Do you want to continue input Income for another person in your family(Y/N): ")) {
                     HashMap<Integer, ArrayList<Double>> taxList = calculateTaxableIncome(family, ParentList);
                     printTaxDetails(taxList);
                     return;
-                }
+                } 
             }
-
         }
-
     }
-
+    public double addIncome(int i){
+        int incomeNum = l.getIntNoLimit("\nEnter number of income source of Person " + i + ": " );
+        double income = 0;
+        System.out.println("---------- Input income ----------");
+        int count = 1;
+        while(count <= incomeNum){
+            income += l.checkInputDouble("Input the " + count + " Income of Person " + i + ": ");  
+            count++;
+        }
+        return income;
+    }
+    
     public ArrayList<Parent> addParent() {
         System.out.println("---------- Input parents ----------");
         ArrayList<Parent> ParentList = new ArrayList<>();
@@ -216,7 +226,7 @@ public class TaxDAO {
     }
 
     public void printTaxDetails(HashMap<Integer, ArrayList<Double>> TaxList) {
-        System.out.printf("%-15s%-25s%-25s%-25s%-25s%-25s\n", " ", "Income", "Deduction for self", "Children", "Parents", "Tax");
+        System.out.printf("%-15s%-25s%-25s%-25s%-25s%-25s\n", " ", "Total Income", "Deduction for self", "Deduction for children", "Deduction for parents", "Tax");
         for (int i = 1; i <= TaxList.size(); i++) {
             ArrayList<Double> arrList = TaxList.get(i);
             double value = arrList.get(0);
