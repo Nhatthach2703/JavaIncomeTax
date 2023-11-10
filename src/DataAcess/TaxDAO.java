@@ -36,7 +36,7 @@ public class TaxDAO {
     }
     
     public void addFamily() {
-        System.out.println("=========== Family Tax ===========");
+        System.out.println("\n=========== Family Tax ===========");
         ArrayList<WorkingPerson> family = new ArrayList<>();
         while (true) {
             ArrayList<Parent> ParentList = addParent();
@@ -48,7 +48,7 @@ public class TaxDAO {
                 WorkingPerson wp = new WorkingPerson(income, listChildren);
                 family.add(wp);
                 System.out.println("---------- Input income ----------");
-                if (!l.checkInputYN("Do you want to continue input Income for another person in your family(Y/N): ")) {
+                if (!l.checkInputYN("\nDo you want to continue input Income for another person in your family(Y/N): ")) {
                     HashMap<Integer, ArrayList<Double>> taxList = calculateTaxableIncome(family, ParentList);
                     printTaxDetails(taxList);
                     return;
@@ -57,9 +57,9 @@ public class TaxDAO {
         }
     }
     public double addIncome(int i){
-        int incomeNum = l.getIntNoLimit("\nEnter number of income source of Person " + i + ": " );
+        System.out.println("\n---------- Input income ----------");
+        int incomeNum = l.getIntNoLimit("Enter number of income source of Person " + i + ": " );
         double income = 0;
-        System.out.println("---------- Input income ----------");
         int count = 1;
         while(count <= incomeNum){
             income += l.checkInputDouble("Input the " + count + "th Income of Person " + i + ": ");  
@@ -85,7 +85,7 @@ public class TaxDAO {
                 if (count == 2) {
                     return ParentList;
                 }
-                if (!l.checkInputYN("Do you want to continue input parent(Y/N): ")) {
+                if (!l.checkInputYN("\nDo you want to continue input parent(Y/N): ")) {
                     return ParentList;
                 }
                 count++;
@@ -118,7 +118,7 @@ public class TaxDAO {
     }
 
     public ArrayList<Children> addChildren() {
-        System.out.println("---------- Input children ----------");
+        System.out.println("\n---------- Input children ----------");
         ArrayList<Children> childrenList = new ArrayList<>();
         int status;
         boolean choice = l.checkInputYN("Do you want to input children(Y/N)?: ");
@@ -134,7 +134,7 @@ public class TaxDAO {
                 }
                 Children child = new Children(status, age);
                 childrenList.add(child);
-                if (!l.checkInputYN("Do you want to continue input children(Y/N): ")) {
+                if (!l.checkInputYN("\nDo you want to continue input children(Y/N): ")) {
                     return childrenList;
                 }
             }
@@ -172,12 +172,12 @@ public class TaxDAO {
     public double calculatorTax(double taxIncome) {
         if (taxIncome <= 0) {
             return 0;
+        } else if (taxIncome < 4000000) {
+            return (double) taxIncome * 5 / 100;
         } else if (taxIncome >= 4000000 && taxIncome <= 6000000) {
             return (double) taxIncome * 8 / 100;
         } else if (taxIncome > 6000000 && taxIncome <= 10000000) {
             return (double) taxIncome * 10 / 100;
-        } else if (taxIncome < 4000000) {
-            return (double) taxIncome * 5 / 100;
         } else {
             return (double) taxIncome * 20 / 100;
         }
