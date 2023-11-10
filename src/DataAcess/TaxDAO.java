@@ -76,7 +76,7 @@ public class TaxDAO {
         if (choice) {
             while (true) {
                 int gender = l.getInt("Father(1) - Mother(2)?", 1, 2);
-                while (!checkParent(gender, ParentList)) {
+                while (!l.checkParent(gender, ParentList)) {
                     gender = l.getInt("Father(1) - Mother(2)?", 1, 2);
                 }
                 int age = l.getIntNoLimit("Input age: ");
@@ -95,27 +95,7 @@ public class TaxDAO {
         }
     }
 
-    public boolean checkParent(int gender, ArrayList<Parent> parentList) {
-        if (parentList.isEmpty()) {
-            return true;
-        }
-        for (Parent x : parentList) {
-            if (gender == x.getGender()) {
-                String genderString = null;
-                switch (gender) {
-                    case 1:
-                        genderString = "Father";
-                        break;
-                    case 2:
-                        genderString = "Mother";
-                        break;
-                }
-                System.out.println("You already input " + genderString + "!!!");
-                return false;
-            }
-        }
-        return true;
-    }
+    
 
     public ArrayList<Children> addChildren() {
         System.out.println("\n---------- Input children ----------");

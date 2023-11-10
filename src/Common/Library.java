@@ -1,10 +1,12 @@
 package Common;
 
 
+import Model.Parent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -190,5 +192,27 @@ public class Library {
                 return result;
             }
         }
+    }
+    
+    public boolean checkParent(int gender, ArrayList<Parent> parentList) {
+        if (parentList.isEmpty()) {
+            return true;
+        }
+        for (Parent x : parentList) {
+            if (gender == x.getGender()) {
+                String genderString = null;
+                switch (gender) {
+                    case 1:
+                        genderString = "Father";
+                        break;
+                    case 2:
+                        genderString = "Mother";
+                        break;
+                }
+                System.out.println("You already input " + genderString + "!!!");
+                return false;
+            }
+        }
+        return true;
     }
 }
