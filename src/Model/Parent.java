@@ -8,7 +8,7 @@ package Model;
  *
  * @author Xuan Vinh
  */
-public class Parent extends Dependent{
+public class Parent extends DependentPerson{
     protected int gender;
 
     public Parent(int gender, int age) {

@@ -8,7 +8,7 @@ package Model;
  *
  * @author Xuan Vinh
  */
-public class Children extends Dependent{
+public class Children extends DependentPerson{
     protected int Status;
 
     public Children(int Status, int age) {

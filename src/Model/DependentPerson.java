@@ -8,10 +8,10 @@ package Model;
  *
  * @author Xuan Vinh
  */
-public class Dependent {
+public class DependentPerson {
     protected int age;
 
-    public Dependent(int age) {
+    public DependentPerson(int age) {
         this.age = age;
     }
 
